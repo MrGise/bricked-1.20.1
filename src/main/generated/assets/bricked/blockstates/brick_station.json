@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "bricked:block/brick_station"
+    }
+  }
+}

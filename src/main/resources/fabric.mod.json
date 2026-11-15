@@ -16,10 +16,10 @@
 	"environment": "*",
 	"entrypoints": {
 		"main": [
-			"net.mrgise.Bricked"
+			"net.MrGise.bricked.Bricked"
 		],
 		"fabric-datagen": [
-			"net.mrgise.BrickedDataGenerator"
+			"net.MrGise.bricked.BrickedDataGenerator"
 		]
 	},
 	"mixins": [

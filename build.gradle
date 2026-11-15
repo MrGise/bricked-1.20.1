@@ -9,16 +9,26 @@ repositories {
 	// Loom adds the essential maven repositories to download Minecraft and libraries from automatically.
 	// See https://docs.gradle.org/current/userguide/declaring_repositories.html
 	// for more information about repositories.
+	maven {
+		name = "DevOS Releases"
+		url = uri("https://mvn.devos.one/releases/")
+	}
 }
 
 loom {
-	splitEnvironmentSourceSets()
-
 	mods {
 		"bricked" {
 			sourceSet sourceSets.main
-			sourceSet sourceSets.client
 		}
+	}
+
+	runs.configureEach() {
+		if (name == "datagen") {
+			jvmArguments.add("-Dporting_lib.datagen.existing_resources=${file("src/main/resources").absolutePath}")
+		}
+	}
+	runConfigs.named("client") {
+		programArgs("--username", "MrGise", "--uuid", "c3f4e025-5e04-4ea4-87b1-c35092bb7909")
 	}
 }
 
@@ -37,6 +47,10 @@ dependencies {
 
 	// Fabric API. This is technically optional, but you probably want it anyway.
 	modImplementation "net.fabricmc.fabric-api:fabric-api:${project.fabric_api_version}"
+
+	modImplementation(include("io.github.fabricators_of_create.Porting-Lib:model_builders:${project.porting_lib_version}"))
+	modImplementation(include("io.github.fabricators_of_create.Porting-Lib:model_generators:${project.porting_lib_version}"))
+	modImplementation(include("io.github.fabricators_of_create.Porting-Lib:models:${project.porting_lib_version}"))
 }
 
 processResources {

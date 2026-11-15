@@ -1,4 +1,4 @@
-package net.mrgise.mixin;
+package net.MrGise.bricked.mixin;
 
 import net.minecraft.server.MinecraftServer;
 import org.spongepowered.asm.mixin.Mixin;
